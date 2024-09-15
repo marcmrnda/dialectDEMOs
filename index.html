@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/apple-chancery" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>iNUvators</title>
+  </head>
+  <body>
+    <div class="intro">
+      <h1 class="intro-header">
+        <span class="intro1">"Bridging Linguistic Gaps:</span><span class="intro1"> Empowering connections across Philippine dialects through the precision of AI translation, fostering inclusivity and understanding in a linguistically diverse nation."</span>
+      </h1>
+
+    </div>
+    <div id="main">
+      <div id="top_box">
+        <div id="logo">iNUvators</div>
+        <div id="menu">
+          <ul>
+            <li>Home</li>
+            <li>About Us</li>
+            <li>Contact Us</li>
+          </ul>
+        </div>
+      </div>
+      <div id="content">
+        <div id="msg1">Translation Device</div>
+        <div id="msg2">For Philippine Dialects</div>
+        <div id="msg3">A Neural Machine Translation With SVM Optimization For Accurate And Efficient Translation Of Philippine Dialects</div>
+        <button onclick="window.location.href='./translation.html'" id="btn">See How it Works!</button>
+      </div>
+    </div>
+    <div id="object">
+        <img src="public/translator-removebg-preview.png" id="character"/>
+        <img src="public/4.png" id="object1"/>
+        <img src="public/pngtree-chat-red-3d-icon-png-image_6441133.png" id="object2"/>
+        <img src="public/wave-10715471-8662983.png" id="object3"/>
+        <div id="layer"></div>
+    </div>
+  </body>
+  <script>
+    var object1 = $('#object1');
+    var object2 = $('#object2');
+    var object3 = $('#object3');
+
+      var layer = $('#layer');
+
+      layer.mousemove(function(e){
+
+                var valueX = (e.pageX * -1 / 20);
+                var valueY = (e.pageY * -1 / 20);
+
+                object1.css({
+                    'transform':'translate3d('+valueX+'px,'+valueY+'px,0)'
+                });
+      });
+
+      layer.mousemove(function(e){
+
+            var valueX = (e.pageX * -1 / 30);
+            var valueY = (e.pageY * -1 / 30);
+
+            object2.css({
+                'transform':'translate3d('+valueX+'px,'+valueY+'px,0)'
+            })
+      });
+      layer.mousemove(function(e){
+
+            var valueX = (e.pageX * -1 / 15);
+            var valueY = (e.pageY * -1 / 15);
+
+            object3.css({
+                'transform':'translate3d('+valueX+'px,'+valueY+'px,0)'
+            })
+      });
+  </script>
+  <script>
+    let intro = document.querySelector('.intro');
+    let introhead = document.querySelector('.intro-header');
+    let introspan = document.querySelectorAll('.intro1');
+
+    window.addEventListener('DOMContentLoaded', ()=>{
+
+      setTimeout(()=>{
+
+        introspan.forEach((span, idx)=>{
+          setTimeout(()=>{
+            span.classList.add('active');
+          }, (idx + 1) * 400)
+        });
+
+        setTimeout(()=>{
+          introspan.forEach((span, idx)=>{
+
+            setTimeout(()=>{
+              span.classList.remove('active');
+              span.classList.add('fade');
+            }, (idx + 1) * 50)
+          })
+        }, 2000);
+
+        setTimeout(()=>{
+          intro.style.top = '-100vh';
+        }, 2700)
+      })
+    })
+  </script>
+</html>

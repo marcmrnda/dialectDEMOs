@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="translation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
     <nav class="navbar navbar-expand-lg navbar-scroll fixed-top shadow-0 border-bottom border-dark">
@@ -19,16 +19,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#!">Home</a>
+                <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#!">Services</a>
+                <a class="nav-link" href="index.html#media">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#!">About</a>
+                <a class="nav-link" href="index.html#features">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#!">Contact</a>
+                <a class="nav-link" href="index.html#news">Contact</a>
               </li>
               <button type="button" class="btn ms-3">Get Started</button>
             </ul>
@@ -41,8 +41,8 @@
           <div class="wrapper">
             <div class="text-input">
               <!-- Textareas for ASR input and translated text -->
-              <textarea class="from-text" readonly spellcheck="false" placeholder="Speech to Text will appear here"></textarea>
-              <textarea class="to-text" readonly spellcheck="false" placeholder="Translation will appear here"></textarea>
+              <textarea class="from-text" id="textToTranslate" spellcheck="true" placeholder="Enter Text"></textarea>
+              <textarea class="to-text"  id="translation" readonly spellcheck="true" placeholder="Translation"></textarea>
             </div>
             <ul class="controls">
               <li class="row from">
@@ -52,7 +52,6 @@
                 </div>
               </li>
               <li class="row to">
-                <select></select>
                 <div class="icons">
                   <i id="to" class="fas fa-volume-up"></i>
                   <i id="to" class="fas fa-copy"></i>
@@ -61,7 +60,7 @@
             </ul>
           </div>
           <!-- Separate buttons for speech recognition and translation -->
-          <button id="start-recognition">Start Speech Recognition</button>
+          <button id="start-recognition">Translate</button>
         </div>
     </div>
 
@@ -120,6 +119,22 @@
 
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+      <script>
+        function translateText() {
+            const text = document.getElementById('textToTranslate').value;
+            fetch('/translate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sentence: text})
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('translation').textContent = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+      </script>
 </body>
+
 </html>
